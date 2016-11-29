@@ -12,6 +12,8 @@ class CaptchaController
 
     public function dispatch(Request $request, Response $response, $args = [])
     {
-        return $response->write($this->captchaService->getCaptcha()->toString());
+        $captcha = $this->captchaService->getCaptcha()->toString();
+        $data = ['data' => $captcha];
+        return $response->withJson($data);
     }
 }
